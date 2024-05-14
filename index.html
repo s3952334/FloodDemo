@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1481px;
+            height: 778px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/FloodDepth_0.js"></script>
+        <script src="data/StatisticalAreasofLevel2_1.js"></script>
+        <script src="data/Buildings_2.js"></script>
+        <script src="data/BuildingAtRisk_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-37.83531601561728,144.7935110602323],[-37.69917067516341,145.12025264701916]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_FloodDepth_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(feature.properties['gid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Status</th>\
+                        <td>' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FloodDepth_0_0() {
+            return {
+                pane: 'pane_FloodDepth_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(107,187,227,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FloodDepth_0');
+        map.getPane('pane_FloodDepth_0').style.zIndex = 400;
+        map.getPane('pane_FloodDepth_0').style['mix-blend-mode'] = 'normal';
+        var layer_FloodDepth_0 = new L.geoJson(json_FloodDepth_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FloodDepth_0',
+            layerName: 'layer_FloodDepth_0',
+            pane: 'pane_FloodDepth_0',
+            onEachFeature: pop_FloodDepth_0,
+            style: style_FloodDepth_0_0,
+        });
+        bounds_group.addLayer(layer_FloodDepth_0);
+        map.addLayer(layer_FloodDepth_0);
+        function pop_StatisticalAreasofLevel2_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(feature.properties['gid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sa2_code21'] !== null ? autolinker.link(feature.properties['sa2_code21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sa2_name21'] !== null ? autolinker.link(feature.properties['sa2_name21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['areasqkm21'] !== null ? autolinker.link(feature.properties['areasqkm21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['loci_uri21'] !== null ? autolinker.link(feature.properties['loci_uri21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_StatisticalAreasofLevel2_1_0() {
+            return {
+                pane: 'pane_StatisticalAreasofLevel2_1',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_StatisticalAreasofLevel2_1');
+        map.getPane('pane_StatisticalAreasofLevel2_1').style.zIndex = 401;
+        map.getPane('pane_StatisticalAreasofLevel2_1').style['mix-blend-mode'] = 'normal';
+        var layer_StatisticalAreasofLevel2_1 = new L.geoJson(json_StatisticalAreasofLevel2_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_StatisticalAreasofLevel2_1',
+            layerName: 'layer_StatisticalAreasofLevel2_1',
+            pane: 'pane_StatisticalAreasofLevel2_1',
+            onEachFeature: pop_StatisticalAreasofLevel2_1,
+            style: style_StatisticalAreasofLevel2_1_0,
+        });
+        bounds_group.addLayer(layer_StatisticalAreasofLevel2_1);
+        map.addLayer(layer_StatisticalAreasofLevel2_1);
+        function pop_Buildings_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(feature.properties['gid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Status</th>\
+                        <td>' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Buildings_2_0() {
+            return {
+                pane: 'pane_Buildings_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,158,23,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Buildings_2');
+        map.getPane('pane_Buildings_2').style.zIndex = 402;
+        map.getPane('pane_Buildings_2').style['mix-blend-mode'] = 'normal';
+        var layer_Buildings_2 = new L.geoJson(json_Buildings_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Buildings_2',
+            layerName: 'layer_Buildings_2',
+            pane: 'pane_Buildings_2',
+            onEachFeature: pop_Buildings_2,
+            style: style_Buildings_2_0,
+        });
+        bounds_group.addLayer(layer_Buildings_2);
+        map.addLayer(layer_Buildings_2);
+        function pop_BuildingAtRisk_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(feature.properties['gid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_area'] !== null ? autolinker.link(feature.properties['shape_area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Staus</th>\
+                        <td>' + (feature.properties['Staus'] !== null ? autolinker.link(feature.properties['Staus'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BuildingAtRisk_3_0() {
+            return {
+                pane: 'pane_BuildingAtRisk_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BuildingAtRisk_3');
+        map.getPane('pane_BuildingAtRisk_3').style.zIndex = 403;
+        map.getPane('pane_BuildingAtRisk_3').style['mix-blend-mode'] = 'normal';
+        var layer_BuildingAtRisk_3 = new L.geoJson(json_BuildingAtRisk_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BuildingAtRisk_3',
+            layerName: 'layer_BuildingAtRisk_3',
+            pane: 'pane_BuildingAtRisk_3',
+            onEachFeature: pop_BuildingAtRisk_3,
+            style: style_BuildingAtRisk_3_0,
+        });
+        bounds_group.addLayer(layer_BuildingAtRisk_3);
+        map.addLayer(layer_BuildingAtRisk_3);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/BuildingAtRisk_3.png" /> BuildingAtRisk': layer_BuildingAtRisk_3,'<img src="legend/Buildings_2.png" /> Buildings': layer_Buildings_2,'<img src="legend/StatisticalAreasofLevel2_1.png" /> Statistical Areas of Level 2': layer_StatisticalAreasofLevel2_1,'<img src="legend/FloodDepth_0.png" /> FloodDepth': layer_FloodDepth_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
